@@ -1,0 +1,11 @@
+{
+  "name": "backdraft-tutorial",
+  "version": "1.0.0",
+  "description": "step-by-step guide to the backdraft library",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rawld Gill",
+  "license": "BSD-3-Clause"
+}
