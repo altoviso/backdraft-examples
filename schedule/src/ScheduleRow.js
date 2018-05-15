@@ -9,11 +9,11 @@ function getDate(rowData){
 function getTime(rowData){
 	let hours = rowData.time.getHours();
 	let mins = rowData.time.getMinutes();
-	return (hours > 12 ? hours - 12 : hours) + ":" + (mins<10 ? "0" + mins : mins);
+	return (hours > 12 ? hours - 12 : hours) + ":" + (mins < 10 ? "0" + mins : mins);
 }
 
 export default class ScheduleRow extends Component {
-	static getSortFunc(prop, order)		{
+	static getSortFunc(prop, order){
 		return (lhs, rhs) =>{
 			lhs = lhs.kwargs.data;
 			rhs = rhs.kwargs.data;

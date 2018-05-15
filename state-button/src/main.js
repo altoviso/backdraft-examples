@@ -7,8 +7,8 @@ import StateButton from "./StateButton.js"
 // });
 
 let elements = e("div",
-	e(StateButton, {uid:1, tabIndex: 1}),
-	e(StateButton, {uid:2, tabIndex: 2})
+	e(StateButton, {uid: 1, tabIndex: 1}),
+	e(StateButton, {uid: 2, tabIndex: 2})
 );
 
 
@@ -17,5 +17,5 @@ someButton.advise("onClick", function(e){
 	console.log(e);
 });
 
-focusManager.advise("focusComponent", (e)=>console.log("focusComponent", e));
-focusManager.advise("blurComponent", (e)=>console.log("blurComponent", e));
+focusManager.advise("focusComponent", (e) => console.log("focusComponent", e));
+focusManager.advise("blurComponent", (e) => console.log("blurComponent", e));

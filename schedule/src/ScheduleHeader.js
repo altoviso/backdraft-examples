@@ -42,7 +42,7 @@ export default class ScheduleHeader extends Component {
 	}
 
 	postRender(){
-		this._setButtonStates(this._sort.column, this._sort.order==="ascending" ? ASCENDING : DESCENDING);
+		this._setButtonStates(this._sort.column, this._sort.order === "ascending" ? ASCENDING : DESCENDING);
 	}
 
 	get sort(){
@@ -51,7 +51,7 @@ export default class ScheduleHeader extends Component {
 
 	set sort(value){
 		if(value.column !== this._sort.column || value.order !== this._sort.order){
-			this._setButtonStates(value.column, value.order==="ascending" ? ASCENDING : DESCENDING);
+			this._setButtonStates(value.column, value.order === "ascending" ? ASCENDING : DESCENDING);
 			let oldValue = this._sort;
 			this._sort = value;
 			this._applyWatchersRaw("sort", oldValue, this._sort);

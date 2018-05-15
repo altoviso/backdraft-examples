@@ -13,7 +13,7 @@ export default class HelloWorld extends Component {
 	}
 
 	get elements(){
-		return e("div",this._getTranslation());
+		return e("div", this._getTranslation());
 	}
 
 	_getTranslation(){

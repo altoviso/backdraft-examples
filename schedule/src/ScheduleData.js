@@ -8,7 +8,7 @@ export default class ScheduleData extends Component {
 
 	sort(column, order){
 		this.reorderChildren(
-			this.children.slice().sort(ScheduleRow.getSortFunc(column, order==="ascending" ? -1 : 1))
+			this.children.slice().sort(ScheduleRow.getSortFunc(column, order === "ascending" ? -1 : 1))
 		)
 	}
 }

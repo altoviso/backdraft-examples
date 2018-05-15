@@ -16,7 +16,7 @@ export default class SortButton extends Component {
 
 	set state(value){
 		value = value % 3;
-		if(this._state !==value){
+		if(this._state !== value){
 			this.className = stateToUiClass[value];
 			this._applyWatchers("state", "_state", value);
 		}
@@ -26,7 +26,7 @@ export default class SortButton extends Component {
 		return e("div", {
 				[e.staticClassName]: "bdt-state-button",
 				[e.advise]: {
-					click: ()=>{
+					click: () =>{
 						this._applyHandlers("click")
 					}
 				}
