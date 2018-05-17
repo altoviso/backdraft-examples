@@ -1,0 +1,22 @@
+{
+	"name": "js-framework-benchmark-react",
+	"version": "1.0.0",
+	"description": "Backdraft demo",
+	"main": "index.html",
+	"scripts": {
+	},
+	"keywords": [
+		"backdraft"
+	],
+	"author": "Rawld Gill",
+	"license": "BSD-3-Clause",
+	"homepage": "https://www.backdraftjs.org",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/altoviso/backdraft-tutorial.git/js-framework-benchmark"
+	},
+	"devDependencies": {
+	},
+	"dependencies": {
+	}
+}
