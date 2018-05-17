@@ -1,0 +1,140 @@
+/*
+
+app-template.css overrides
+
+*/
+
+@charset "UTF-8";
+
+.bd-button, .bd-two-state-button {
+	/* center the content both ways */
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+
+	padding: 10px;
+	min-height: 20px;
+
+	cursor: pointer;
+}
+
+.bd-toggle-all div {
+	width: 20px;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.bd-toggle-all div:before {
+	content: '❯';
+	font-size: 22px;
+	color: #e6e6e6
+}
+
+.bd-toggle-all.checked div:before {
+	color: #737373
+}
+
+.new-todo {
+	width: calc(100% - 40px);
+	padding: 16px;
+}
+
+.bd-todo.completed .bd-todo-list-item {
+	display: none;
+}
+
+.bd-todo.completed .bd-todo-list-item.completed {
+	display: flex;
+}
+
+.bd-todo.active .bd-todo-list-item.completed {
+	display: none;
+}
+
+.bd-todo-list-item {
+	display: flex;
+	font-size: 24px;
+	border-bottom: 1px solid #ededed;
+}
+
+.bd-todo-list-item > p {
+	flex-grow: 1;
+
+	display:inline-block;
+	line-height: 1.2;
+	word-break: break-all;
+	margin: 0;
+	padding: 15px;
+}
+
+.bd-todo-list-item.completed > p {
+	color: #d9d9d9;
+	text-decoration: line-through;
+}
+
+.bd-todo-list-item.edit :nth-child(2),
+.bd-todo-list-item.edit :nth-child(3) {
+	display:none;
+}
+
+.bd-completed div {
+	height: 40px;
+	width: 40px;
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+.bd-completed.checked div {
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
+}
+
+.delete-button div {
+	width: 20px;
+}
+
+.bd-todo-list-item:hover .delete-button div:before {
+	content: 'x';
+	font-size: 22px;
+	color: #cc9a9a;
+}
+
+.bd-footer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.bd-footer > div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 1em;
+}
+
+.bd-footer .bd-radio-group .bd-button div {
+	border: 1px solid transparent;
+	padding: 3px 7px;
+}
+
+.bd-footer .bd-radio-group .bd-button.checked  div {
+	border-color: rgba(175, 47, 47, 0.4);
+
+}
+
+.bd-footer .bd-radio-group .bd-button:hover  div {
+	border-color: rgba(175, 47, 47, 0.1);
+}
+
+.bd-clear-completed:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.no-completed-items .bd-clear-completed {
+	color:white;
+	cursor: initial;
+}
+
+
+
