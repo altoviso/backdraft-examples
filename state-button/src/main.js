@@ -7,8 +7,8 @@ import StateButton from "./StateButton.js"
 // });
 
 let elements = e("div",
-	e(StateButton, {uid: 1, tabIndex: 1}),
-	e(StateButton, {uid: 2, tabIndex: 2})
+	e(StateButton, {uid: 1, tabIndex: 1, label: "Button-1"}),
+	e(StateButton, {uid: 2, tabIndex: 2, label: "Button-2"})
 );
 
 
