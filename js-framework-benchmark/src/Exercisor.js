@@ -23,7 +23,7 @@ let stopMeasure = function(){
 export default class Exercisor extends Component {
 	constructor(kwargs){
 		super(kwargs);
-		this.id = 1;
+		this.dataId = 1;
 		this.data = [];
 		this.selected = null;
 	}
@@ -34,18 +34,20 @@ export default class Exercisor extends Component {
 
 	run(){
 		startMeasure("run");
-		const obj = run(this.id);
 		this.clear();
-		this.id = obj.id;
-		this.data = obj.data;
-		this.data.forEach((row) => this.insChild(e(Row, {id: row.id, label: row.label}), this._bodyNode));
-		this.printDuration();
+		this.add(run);
 	}
 
-	add(event, lots){
-		lots || startMeasure("add");
-		const obj = (lots ? runLots : add)(this.id, this.data);
-		this.id = obj.id;
+	runLots(event){
+		startMeasure("runLots");
+		this.clear();
+		this.add(runLots);
+	}
+
+	add(dataProc){
+		startMeasure(dataProc===add ? "add" : "add lots");
+		const obj = dataProc(this.dataId, this.data);
+		this.dataId = obj.id;
 		this.data = obj.data;
 		this.data.slice((this.children && this.children.length) || 0).forEach((row) => this.insChild(e(Row, {
 			id: row.id,
@@ -83,11 +85,6 @@ export default class Exercisor extends Component {
 		});
 	}
 
-	runLots(event){
-		startMeasure("runLots");
-		this.add({}, true);
-	}
-
 	clear(){
 		startMeasure("clear");
 		this.children && this.children.slice().forEach((child) => child.destroy());
@@ -122,7 +119,7 @@ export default class Exercisor extends Component {
 							[
 								{id: "run", label: "Create 1,000 rows", proc: this.run.bind(this)},
 								{id: "runlots", label: "Create 10,000 rows", proc: this.runLots.bind(this)},
-								{id: "add", label: "Append 1,000 rows", proc: this.add.bind(this)},
+								{id: "add", label: "Append 1,000 rows", proc: this.add.bind(this, add)},
 								{id: "update", label: "Update every 10th row", proc: this.update.bind(this)},
 								{id: "clear", label: "Clear", proc: this.clear.bind(this)},
 								{id: "swaprows", label: "Swap Rows", proc: this.swapRows.bind(this)},

@@ -1,1 +1,1 @@
-export * from "../../node_modules/backdraftjs/src/backdraft.js"
+export * from "../../node_modules/bd-core/lib.js"
