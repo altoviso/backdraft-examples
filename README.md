@@ -1,6 +1,6 @@
 # Backdraft Tutorial and Example Code
 
-This repository contains all code used if various Backdraft tutorials and examples.
+This repository contains all code used in various Backdraft tutorials and examples.
 
 
 Backdraft is extensively documented at [backdraftjs.org](http://backdraftjs.org). Please visit [Getting Started](http://backdraftjs.org/tutorial/1-getting-started.html) for an explanation of how to install and use this repository.
