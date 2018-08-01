@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+.bd-scrollbar {
+    display: flex;
+    flex-direction: column;
+}
+
+.bd-scrollbar .up-button,
+.bd-scrollbar .down-button,
+.bd-scrollbar .thumb-button {
+    /* center the content both ways */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color:#EEEEEE;
+}
+
+.bd-scrollbar .up-button{
+    border-bottom:1px solid #CCCCCC;
+}
+
+.bd-scrollbar .down-button{
+    border-top:1px solid #CCCCCC;
+}
+
+.bd-scrollbar .up-button div,
+.bd-scrollbar .down-button div {
+    font-weight: bold;
+    color: red;
+}
+
+.bd-scrollbar .up-button div:after {
+    padding:2px;
+    content: "\2191";
+}
+
+.bd-scrollbar .down-button div:after {
+    content: "\2193";
+}
+
+.bd-scrollbar .thumb-area {
+    flex-grow: 1;
+    position:relative;
+}
+
+.bd-scrollbar .thumb-button {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+}
+
+.bd-scrollbar .thumb-button div{
+    border: 1px solid blue;
+    height:9px;
+    width:9px;
+    background-color:green;
+}
+
