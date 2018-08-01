@@ -34,10 +34,12 @@ server.listen(port);
 server.on('error', (e)=>{throw e;});
 server.on('listening', ()=>{console.log("listening on port ", server.address().port);});
 
+console.log("page that contains links to all examples: http://localhost:" + server.address().port + "/Examples.html");
 console.log("hello world static example: http://localhost:" + server.address().port + "/hello-world-static/index.html");
 console.log("hello world dynamic example: http://localhost:" + server.address().port + "/hello-world-dynamic/index.html");
 console.log("js framework benchmark example: http://localhost:" + server.address().port + "/js-framework-benchmark/index.html");
 console.log("schedule example: http://localhost:" + server.address().port + "/schedule/index.html");
+console.log("grid example: http://localhost:" + server.address().port + "/grid/index.html");
 console.log("state button example: http://localhost:" + server.address().port + "/state-button/index.html");
 console.log("thinking-in-backdraft (Step 2) example: http://localhost:" + server.address().port + "/thinking-in-backdraft/index-step-2.html");
 console.log("thinking-in-backdraft (Step 3) example: http://localhost:" + server.address().port + "/thinking-in-backdraft/index-step-3.html");

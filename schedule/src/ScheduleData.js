@@ -2,7 +2,7 @@ import {Component, e} from "./backdraft.js"
 import ScheduleRow from "./ScheduleRow.js"
 
 export default class ScheduleData extends Component {
-	get elements(){
+	_elements(){
 		return e("tbody", this.kwargs.data.map((rowData) => e(ScheduleRow, {data: rowData})));
 	}
 

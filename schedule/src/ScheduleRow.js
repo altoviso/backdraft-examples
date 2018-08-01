@@ -31,7 +31,7 @@ export default class ScheduleRow extends Component {
 		}
 	}
 
-	get elements(){
+	_elements(){
 		let rowData = this.kwargs.data;
 		return e("tr",
 			e("td", getDate(rowData)),

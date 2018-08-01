@@ -3,7 +3,7 @@ import ScheduleHeader from "./ScheduleHeader.js"
 import ScheduleData from "./ScheduleData.js"
 
 export default class Schedule extends Component {
-	get elements(){
+	_elements(){
 		return e("table",
 			e(ScheduleHeader, {
 				[e.watch]: {

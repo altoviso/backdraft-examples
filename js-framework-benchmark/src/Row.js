@@ -34,7 +34,7 @@ export default class Row extends Component {
 		}
 	}
 
-	get elements(){
+	_elements(){
 		return e("tr",
 			e("td", {className: "col-md-1"}, this.kwargs.id),
 			e("td", {className: "col-md-4"},

@@ -5,7 +5,7 @@ import RadioGroup from "./reusable-components/RadioGroup.js";
 import List from "./List.js"
 
 export default class ToDo extends Component {
-	get elements(){
+	_elements(){
 		return e("div", {className: "bd-todo"},
 			e("div",
 				e(TwoStateButton, {

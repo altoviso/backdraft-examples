@@ -1,7 +1,7 @@
 import {Component, e, stopEvent} from "../backdraft.js"
 
 export default class SingleInput extends Component {
-	get elements(){
+	_elements(){
 		return e("input", {
 			value: this.kwargs.value,
 			[e.advise]: {

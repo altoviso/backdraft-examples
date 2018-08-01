@@ -8,7 +8,7 @@ export default class RadioGroup extends Component {
 		this.value = kwargs.value;
 	}
 
-	get elements(){
+	_elements(){
 		return e("div", this.kwargs.group.map((item, i) =>
 			e(Button, Object.assign({}, item, {handler: () => (this.value = item.value)}))
 		));

@@ -36,7 +36,7 @@ export default class StateButton extends Component {
 		}// else, no change, ignore
 	}
 
-	get elements(){
+	_elements(){
 		return e("div",
 			{
 				className: "bd-state-button",
@@ -57,7 +57,7 @@ export default class StateButton extends Component {
 		if(focus){
 			// getting the focus
 			this._keyPressHandle = connect(this._dom.root, "keypress", (e) =>{
-				if(e.keyCode===32){
+				if(e.keyCode === 32){
 					this._onClick(e);
 				}
 			})
@@ -68,16 +68,16 @@ export default class StateButton extends Component {
 		}
 	}
 
-_onClick(e){
-	stopEvent(e);
+	_onClick(e){
+		stopEvent(e);
 
-	if(! this.enabled) return;
+		if(!this.enabled) return;
 
-	let states = this._states;
-	this.value =
-		states[(states.indexOf(this._value) + 1) % states.length];
-	this._applyHandlers({name: "onClick", domEventObject: e});
-}
+		let states = this._states;
+		this.value =
+			states[(states.indexOf(this._value) + 1) % states.length];
+		this._applyHandlers({name: "onClick", domEventObject: e});
+	}
 }
 
 StateButton.className = "bd-state-button";

@@ -1,7 +1,7 @@
 import {Component, e, stopEvent} from "../backdraft.js"
 
 export default class Button extends Component {
-	get elements(){
+	_elements(){
 		return e("div", {[e.advise]: {"click": this._onClick.bind(this)}},
 			e("div", this.kwargs.label)
 		)

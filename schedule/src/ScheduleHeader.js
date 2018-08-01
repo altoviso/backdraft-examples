@@ -11,7 +11,7 @@ export default class ScheduleHeader extends Component {
 		this._sort = {column: "time", order: "ascending"};
 	}
 
-	get elements(){
+	_elements(){
 		return e("thead",
 			e("tr", {className: "header"},
 				e("th", e(SortButton, {

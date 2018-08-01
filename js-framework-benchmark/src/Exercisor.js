@@ -52,7 +52,7 @@ export default class Exercisor extends Component {
 		this.data.slice((this.children && this.children.length) || 0).forEach((row) => this.insChild(e(Row, {
 			id: row.id,
 			label: row.label
-		}), this._bodyNode));
+		}), "_bodyNode"));
 		this.printDuration();
 	}
 
@@ -107,7 +107,7 @@ export default class Exercisor extends Component {
 		this.printDuration();
 	}
 
-	get elements(){
+	_elements(){
 		return e("div", {className: "container"},
 			e("div", {className: "jumbotron"},
 				e("div", {className: "row"},

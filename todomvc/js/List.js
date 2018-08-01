@@ -17,7 +17,7 @@ class CompletedButton extends TwoStateButton {
 CompletedButton.className = "bd-completed";
 
 class Item extends Component {
-	get elements(){
+	_elements(){
 		let item = this.kwargs.todoItem;
 		return e("div", {className: "bd-todo-list-item"},
 			e(CompletedButton, {value: item.completed, todoItem: item}),
@@ -54,7 +54,7 @@ class Item extends Component {
 }
 
 export default class List extends Component {
-	get elements(){
+	_elements(){
 		return e("div", {className: "bd-todo-list"});
 	}
 

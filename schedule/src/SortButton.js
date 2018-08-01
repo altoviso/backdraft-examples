@@ -22,7 +22,7 @@ export default class SortButton extends Component {
 		}
 	}
 
-	get elements(){
+	_elements(){
 		return e("div", {
 				[e.staticClassName]: "bdt-state-button",
 				[e.advise]: {

@@ -1,7 +1,7 @@
 import {Component, render, e, stopEvent} from "./backdraft.js"
 
 class ProductCategoryRow extends Component {
-	get elements(){
+	_elements(){
 		return e("tr",
 			e("th", {colSpan: 2}, this.kwargs.category)
 		);
@@ -9,7 +9,7 @@ class ProductCategoryRow extends Component {
 }
 
 class ProductRow extends Component {
-	get elements(){
+	_elements(){
 		let product = this.kwargs.product;
 		return e("tr",
 			e("td", product.stocked ?
@@ -29,7 +29,7 @@ class ProductRow extends Component {
 }
 
 class ProductTable extends Component {
-	get elements(){
+	_elements(){
 		let lastCategory = null;
 		return e("table",
 			e("thead",
@@ -65,7 +65,7 @@ class SearchBar extends Component {
 		this._inStockOnly.checked = value;
 	}
 
-	get elements(){
+	_elements(){
 		return e("form",
 			e("input", {
 				type: "text",
@@ -108,7 +108,7 @@ class FilterableProductTable extends Component {
 		this.inStockOnly = props.inStockOnly;
 	}
 
-	get elements(){
+	_elements(){
 		return e("div",
 			e(SearchBar, {
 				[e.attach]: "searchBar",
