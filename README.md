@@ -43,6 +43,10 @@ Demonstrates the [Thinking in React](https://reactjs.org/docs/thinking-in-react.
 ### todomvc
 A Backdraft implementation of the [todomvc](https://github.com/tastejs/todomvc) exercise.
 
+
+### grid
+Sketches a grid that can handle tens-of-thousands of rows. This demo is not complete...but is far enough along to see how easy it is construct grids that hold *thousands* of rows and yet has *instantaneous* performance.
+
 ## Support
 
 If you have a usage question, please open an issue on [stackoverflow](https://stackoverflow.com/questions/ask/advice?); please tag the question with "backdraft".
