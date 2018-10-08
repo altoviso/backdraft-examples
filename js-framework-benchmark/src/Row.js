@@ -1,19 +1,9 @@
-import {Component, e} from "./backdraft.js"
+import {Component, e} from "./backdraft.js";
 
-export default class Row extends Component {
+export default class Row extends Component.withWatchables("label") {
 	constructor(kwargs){
 		super(kwargs);
-		this._label = kwargs.label;
-		kwargs.selected && (this._selected = true);
-		this.watch("label", (newValue) => this._labelNode && (this._labelNode = newValue));
-	}
-
-	get label(){
-		return this._label;
-	}
-
-	set label(label){
-		this._applyWatchers("label", "_label", label);
+		kwargs.selected && (this.selected = true);
 	}
 
 	get selected(){
@@ -30,28 +20,23 @@ export default class Row extends Component {
 				this.removeClassName("danger");
 				delete this._selected;
 			}
-			this._applyWatchers("selected", !value, value)
+			this.bdMutate("selected", !value, value);
 		}
 	}
 
-	_elements(){
+	bdElements(){
 		return e("tr",
 			e("td", {className: "col-md-1"}, this.kwargs.id),
 			e("td", {className: "col-md-4"},
 				e("a", {
-						[e.attach]: "_labelNode",
-						[e.advise]: {
-							click: this._applyHandlers.bind(this, {name: "select", id: this.kwargs.id})
-						}
-					}, this._label
-				)
+					bdReflect: "label",
+					bdOn_click: () => this.bdNotify({type: "select", id: this.kwargs.id})
+				})
 			),
 			e("td", {className: "col-md-1"},
 				e("a", {
-					[e.advise]: {
-						click: this._applyHandlers.bind(this, {name: "delete", id: this.id})
-					},
-					innerHTML: '<span className="glyphicon glyphicon-remove" aria-hidden="true"></span>'
+					bdOn_click:() => this.bdNotify.bind(this, {name: "delete", id: this.id}),
+					innerHTML: "<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>"
 				})
 			),
 			e("td", {className: "col-md-6"})

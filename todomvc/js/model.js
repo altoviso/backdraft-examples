@@ -1,4 +1,4 @@
-import {WatchHub, EventHub} from "./backdraft.js"
+import {WatchHub, EventHub} from "./backdraft.js";
 
 let uidSeed = 0;
 function getUid(){
@@ -28,7 +28,7 @@ class Item extends WatchHub() {
 	}
 
 	set text(newValue){
-		this._applyWatchers("text", "_text", newValue);
+		this.bdMutate("text", "_text", newValue);
 	}
 
 	get completed(){
@@ -36,7 +36,7 @@ class Item extends WatchHub() {
 	}
 
 	set completed(newValue){
-		this._applyWatchers("completed", "_completed", newValue);
+		this.bdMutate("completed", "_completed", newValue);
 	}
 }
 
@@ -73,26 +73,26 @@ class Model extends EventHub() {
 		let item = new Item(id, completed, text);
 		this._items.push(item);
 		item.watch("completed", () =>{
-			this._applyHandlers({name: "item-complete-mutate", item: item});
+			this.bdNotify({type: "item-complete-mutate", item: item});
 			this.persist();
 		});
 		item.watch("text", () =>{
 			this.persist();
 		});
-		this._applyHandlers({name: "item-inserted", item: item});
+		this.bdNotify({type: "item-inserted", item: item});
 		this.persist();
 	}
 
 	delItem(target){
 		if(this._items.some((item, index)=>(item===target && this._items.splice(index, 1)))){
-			this._applyHandlers({name: "item-deleted", item: target});
+			this.bdNotify({type: "item-deleted", item: target});
 			this.persist();
 			target.destroy();
 		}
 	}
 
 	setCompleteAll(value){
-		this._items.forEach((item) => (item.completed = value))
+		this._items.forEach((item) => (item.completed = value));
 	}
 
 	removeCompleted(){

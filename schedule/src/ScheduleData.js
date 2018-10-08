@@ -1,15 +1,15 @@
-import {Component, e} from "./backdraft.js"
-import ScheduleRow from "./ScheduleRow.js"
+import {Component, e} from "./backdraft.js";
+import ScheduleRow from "./ScheduleRow.js";
 
 export default class ScheduleData extends Component {
-	_elements(){
+	bdElements(){
 		return e("tbody", this.kwargs.data.map((rowData) => e(ScheduleRow, {data: rowData})));
 	}
 
 	sort(column, order){
 		this.reorderChildren(
 			this.children.slice().sort(ScheduleRow.getSortFunc(column, order === "ascending" ? -1 : 1))
-		)
+		);
 	}
 }
 

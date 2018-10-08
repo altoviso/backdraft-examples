@@ -1,6 +1,6 @@
-import {Component, e} from "./backdraft.js"
-import Row from "./Row.js"
-import {run, runLots, add, update, swapRows, deleteRow} from "./utils.js"
+import {Component, e} from "./backdraft.js";
+import Row from "./Row.js";
+import {run, runLots, add, update, swapRows} from "./utils.js";
 
 let startTime;
 let lastMeasure;
@@ -14,7 +14,7 @@ let stopMeasure = function(){
 		window.setTimeout(function(){
 			lastMeasure = null;
 			let stop = performance.now();
-			let duration = 0;
+			// eslint-disable-next-line no-console
 			console.log(last + " took " + (stop - startTime));
 		}, 0);
 	}
@@ -38,28 +38,36 @@ export default class Exercisor extends Component {
 		this.add(run);
 	}
 
-	runLots(event){
+	runLots(){
 		startMeasure("runLots");
 		this.clear();
 		this.add(runLots);
 	}
 
 	add(dataProc){
-		startMeasure(dataProc===add ? "add" : "add lots");
+		startMeasure(dataProc === add ? "add" : "add lots");
 		const obj = dataProc(this.dataId, this.data);
 		this.dataId = obj.id;
 		this.data = obj.data;
 		this.data.slice((this.children && this.children.length) || 0).forEach((row) => this.insChild(e(Row, {
 			id: row.id,
-			label: row.label
+			label: row.label,
+			bdOn: {
+				select: (e) => this.select(e.id),
+				delete: (e) => this.delete(e.id)
+			}
 		}), "_bodyNode"));
 		this.printDuration();
 	}
 
 	update(){
 		startMeasure("update");
-		const data = update(this.data);
-		this.data.forEach((row, i) => this.children[i].label = row.label);
+		update(this.data);
+		this.data.forEach((row, i) => {
+			if(this.children[i].label !== row.label){
+				this.children[i].label = row.label;
+			}
+		});
 		this.printDuration();
 
 	}
@@ -67,15 +75,15 @@ export default class Exercisor extends Component {
 	select(id){
 		startMeasure("select");
 		if(this.selected){
-			this.selected.select = false;
+			this.selected.selected = false;
 		}
-		const newSelected = this.children.find((row) => row.id === id);
-		newSelected && (this.selected = newSelected);
+		this.selected = this.children.find((row) => row.id == id);
+		this.selected && (this.selected.selected = true);
 	}
 
 	delete(id){
 		startMeasure("delete");
-		this.data.some((row, i) =>{
+		this.data.some((row, i) => {
 			if(row.id === id){
 				this.delChild(row);
 				this.data.splice(i, 1);
@@ -96,7 +104,7 @@ export default class Exercisor extends Component {
 		startMeasure("swapRows");
 		const data = this.data = swapRows(this.data);
 		let map = new Map();
-		this.children.forEach((row) => map.set(row.id, row));
+		this.children.forEach((row) => map.set(Number(row.id), row));
 		this.reorderChildren(data.map((row) => map.get(row.id)));
 		this.printDuration();
 	}
@@ -107,7 +115,7 @@ export default class Exercisor extends Component {
 		this.printDuration();
 	}
 
-	_elements(){
+	bdElements(){
 		return e("div", {className: "container"},
 			e("div", {className: "jumbotron"},
 				e("div", {className: "row"},
@@ -128,7 +136,7 @@ export default class Exercisor extends Component {
 									type: "button",
 									id: action.id,
 									className: "btn btn-primary btn-block",
-									[e.advise]: {click: action.proc}
+									bdOn_click: action.proc
 								}, action.label)
 							))
 						)
@@ -136,11 +144,10 @@ export default class Exercisor extends Component {
 				)
 			),
 			e("table", {className: "table table-hover table-striped test-data"},
-				e("tbody", {[e.attach]: "_bodyNode"},
+				e("tbody", {bdAttach: "_bodyNode"},
 					this.data.map((row) => e(Row, {
 						data: row,
-						selected: row.id === this.selectedRowId,
-						[e.advise]: {
+						bdOn: {
 							select: (e) => this.select(e.id),
 							delete: (e) => this.delete(e.id)
 						}

@@ -5,7 +5,14 @@
     <title>Backdraft App</title>
 
     <style type="text/css">
-        .bd-hidden {
+        .in-stock-only .not-stocked {
+            display: none;
+        }
+        .not-stocked td:first-child {
+            color:red;
+        }
+
+        .hide {
             display: none;
         }
     </style>
@@ -16,7 +23,7 @@
     You need to enable JavaScript to run this app.
 </noscript>
 <div id="root"></div>
-<script type="module" src="./step-2.js"></script>
+<script type="module" src="./main.js"></script>
 </body>
 
 </html>

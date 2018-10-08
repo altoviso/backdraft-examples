@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+#rotate, #static {
+    margin: 2em;
+    display:flex;
+    justify-content: center;
+}
+
+
+#rotate > div,
+#static > div {
+    display:flex;
+    justify-content: center;
+    min-width: 10em;
+    min-height: 1.5em;
+    border: 1px solid black;
+    padding: 1em;
+}
+
+#static > div {
+    border: 1px solid red;
+}
+
+.helloWorld.empty:before {
+    content: "no translation";
+}
+
+.helloWorld.no-translations {
+    display:none;
+}
+
+.Italian {
+    color: red;
+}
+
+.French {
+    color: blue;
+}
+
+.Spanish {
+    color: green;
+}
+
+.German {
+    color: darkviolet;
+}
+
+.Swedish {
+    color: orangered;
+}
+
+.Russian {
+    color: cadetblue;
+}
+
+.Japanese {
+    color: coral;
+}

@@ -1,33 +1,34 @@
-import {Component, e, stopEvent} from "./backdraft.js"
+import {Component, e, stopEvent} from "./backdraft.js";
 import Button from "./reusable-components/Button.js";
 import TwoStateButton from "./reusable-components/TwoStateButton.js";
 import RadioGroup from "./reusable-components/RadioGroup.js";
-import List from "./List.js"
+import List from "./List.js";
 
 export default class ToDo extends Component {
-	_elements(){
+	bdElements(){
 		return e("div", {className: "bd-todo"},
 			e("div",
 				e(TwoStateButton, {
 					className: "bd-toggle-all",
-					[e.watch]: {value: (completeAll) => this.kwargs.model.setCompleteAll(completeAll)}
+					bdWatch: {value: (completeAll) => this.kwargs.model.setCompleteAll(completeAll)}
 				}),
 				e("input", {
 					className: "new-todo",
 					placeholder: "What needs to be done?",
 					autofocus: true,
-					[e.attach]: "_inputNode",
-					[e.advise]: {keydown: this._onKeyDown.bind(this)}
+					bdOn_keydown: this._onKeyDown.bind(this)
 				})
 			),
 			e(List, {model: this.kwargs.model}),
 			e("div", {className: "bd-footer"},
-				e("div", {[e.attach]: "_itemsLeftNode"}),
+				e("div", {
+					bdAttach: "_itemsLeftNode"
+				}),
 				e("div",
 					e(RadioGroup, {
 						value: "All",
 						group: [{label: "All"}, {label: "Active"}, {label: "Completed"}],
-						[e.watch]: {value: (value) => this.setFilter(value.toLowerCase())}
+						bdWatch: {value: value => this.setFilter(value.toLowerCase())}
 					})
 				),
 				e(Button, {
@@ -45,7 +46,7 @@ export default class ToDo extends Component {
 	}
 
 	setFilter(filter){
-		this.removeClassName("completed", "active", "all").addClassName(filter)
+		this.removeClassName("completed", "active", "all").addClassName(filter);
 	}
 
 	_updateMessageCounts(){
@@ -58,10 +59,10 @@ export default class ToDo extends Component {
 		let ENTER_KEY = 13;
 		if(event.keyCode === ENTER_KEY){
 			stopEvent(e);
-			let val = this._inputNode.value.trim();
+			let val = e.target.value.trim();
 			if(val){
 				this.kwargs.model.insItem(val);
-				this._inputNode.value = "";
+				e.target.value = "";
 			}
 		}
 	}

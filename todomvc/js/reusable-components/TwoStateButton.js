@@ -1,25 +1,15 @@
-import Button from "./Button.js"
+import Button from "./Button.js";
+import {withWatchables, e} from "../backdraft.js";
 
-export default class TwoStateButton extends Button {
-	constructor(kwargs){
-		super(kwargs);
-		this.value = "value" in kwargs ? kwargs.value : false;
-	}
-
-	get value(){
-		return this._value;
-	}
-
-	set value(newValue){
-		if(this._applyWatchers("value", "_value", !!newValue) && this.rendered){
-			this[this.value ? "addClassName" : "removeClassName"]("checked");
-		}
-	}
-
-	postRender(){
-		if(this.value){
-			this.addClassName("checked");
-		}
+export default class TwoStateButton extends withWatchables(Button, "value") {
+	bdElements(){
+		return e(
+			"div", {
+				bdReflectClass: ["value", value => value ? "checked" : ""],
+				bdOn_click: this._onClick.bind(this)
+			},
+			e("div", this.kwargs.label)
+		);
 	}
 
 	_onClick(e){

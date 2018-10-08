@@ -1,30 +1,27 @@
-import {Component, e, stopEvent} from "../backdraft.js"
+import {Component, e, stopEvent} from "../backdraft.js";
 
 export default class SingleInput extends Component {
-	_elements(){
+	bdElements(){
 		return e("input", {
 			value: this.kwargs.value,
-			[e.advise]: {
+			bdOn: {
 				keydown: this._onKeyDown.bind(this),
 				blur: this._onKeyDown.bind(this, null)
 			}
-		})
-	}
-
-	postRender(){
-		setTimeout(() => this._dom.root.focus(), 100);
+		});
 	}
 
 	_onKeyDown(e){
 		const ESCAPE_KEY = 27;
 		const ENTER_KEY = 13;
 
+		let kwargs = this.kwargs;
 		if(!e || e.keyCode === ENTER_KEY){
 			stopEvent(e);
-			this.kwargs.finish(this._dom.root.value.trim() || this.kwargs.value)
+			kwargs.finish(this.bdDom.root.value.trim() || kwargs.value);
 		}else if(e.keyCode === ESCAPE_KEY){
 			stopEvent(e);
-			this.kwargs.finish(this.kwargs.value)
+			kwargs.finish(kwargs.value);
 		}
 	}
 }

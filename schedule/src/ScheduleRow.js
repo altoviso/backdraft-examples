@@ -1,9 +1,9 @@
-import {Component, e} from "./backdraft.js"
+import {Component, e} from "./backdraft.js";
 
 let month = "Jan.Feb.Mar.Apr.May.Jun.Jul.Aug.Sep.Oct.Nov.Dec".split(".");
 
 function getDate(rowData){
-	return month[rowData.time.getMonth()] + " " + rowData.time.getDate()
+	return month[rowData.time.getMonth()] + " " + rowData.time.getDate();
 }
 
 function getTime(rowData){
@@ -28,10 +28,10 @@ export default class ScheduleRow extends Component {
 			}else{
 				return 0;
 			}
-		}
+		};
 	}
 
-	_elements(){
+	bdElements(){
 		let rowData = this.kwargs.data;
 		return e("tr",
 			e("td", getDate(rowData)),

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./main.css">
+    <title>Backdraft Hello World Example Application</title>
+</head>
+<body>
+<noscript id="noScript">
+    You need to enable JavaScript to run this app.
+</noscript>
+<div>
+    <h2>Backdraft Hello World Example Application</h2>
+    <p>This application defines a "HelloWorld" Backdraft Component. The component prints "Hello, World" in several
+        languages as given by the language property of the component. The main program creates and renders an instance
+        of HelloWorld in the black below, and then changes the language property every second, causing the component to
+        lookup and reflect the translation to the DOM.</p>
+    <p>The main program creates second HelloWorld component in the red box. A reference to this second component is
+        saved at window.helloWorld. You can open the debugger and set the language component explicitly (e.g.,
+        window.helloWorld.langauge = "French") and see the component update the display.</p>
+</div>
+<div id="rotate"></div>
+<div id="static"></div>
+<div>
+    <h3>Further Information</h3>
+    <p>This program is discussed in the tutorial section
+        <a href="http://localhost:8080/altoviso/backdraftjs.org/public/tutorial.html#bd-tutorial.helloWorld">Hello,
+            World</a>.</p>
+    <p>The code for the program is in the github repo
+        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">altoviso/backdraft-tutorial</a>.
+    </p>
+    <p>There is a Pen of the code
+        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">here</a>.</p>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
