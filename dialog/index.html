@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="../node_modules/bd-widgets/less/main.css">
+    <title>Backdraft Hello World Example Application</title>
+</head>
+<body>
+<noscript id="noScript">
+    You need to enable JavaScript to run this app.
+</noscript>
+<div>
+    <h2>Backdraft Dialog Example</h2>
+    <p>This application presents a table of file names, modified timestamps, and sizes, and a rename button that presents a dialog that allows the file name to be changed. If the dialog is OK'd with a non-empty name, then the name is updated. Another little component watches the data behind the file list and outputs changes to that list to demonstrate the underlying data is actually changed...not just what is on the screen.</p>
+    <p>The program demonstrates declarative composition...notice that, without any knowledge of Backdraft, it is obvious how the rename dialog works.</p>
+</div>
+<div id="components">
+<div id="files"></div>
+<div id="log"></div>
+</div>
+<div>
+    <h3>Further Information</h3>
+    <p>This program is discussed in the tutorial section
+        <a href="http://localhost:8080/altoviso/backdraftjs.org/public/tutorial.html#bd-tutorial.helloWorld">Hello,
+            World</a>.</p>
+    <p>The code for the program is in the github repo
+        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">altoviso/backdraft-tutorial</a>.
+    </p>
+    <p>There is a Pen of the code
+        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">here</a>.</p>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
