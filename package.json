@@ -5,14 +5,16 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node httpServer.js"
+    "start": "node httpServer.js"
   },
   "author": "Rawld Gill",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "bd-core": "^2.2.1",
+    "bd-core": "^2.3.0",
+    "bd-widgets": "^0.0.1",
     "eslint": "^5.6.1",
     "express": "^4.16.3",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "opn": "^5.4.0"
   }
 }
