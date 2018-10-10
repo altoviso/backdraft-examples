@@ -21,11 +21,11 @@
     border: 1px solid red;
 }
 
-.helloWorld.empty:before {
+.HelloWorld.empty:before {
     content: "no translation";
 }
 
-.helloWorld.no-translations {
+.HelloWorld.no-translations {
     display:none;
 }
 

@@ -9,7 +9,6 @@
     margin: 2em;
 }
 #log .log {
-    border: 1px solid black;
     min-height:5em;
     flex-grow: 1;
     min-width:50em;

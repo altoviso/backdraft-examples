@@ -1,26 +1,12 @@
 import {Component, e} from "./backdraft.js";
 
 
-export default class HelloWorld extends Component.withWatchables("language", "translations", "translation") {
-	constructor(kwargs){
-		super(kwargs);
-		let translate = () => {
-			this.translation =
-				(this.translations && this.translations[this.language]) || "";
-		};
-		translate();
-		this.watch({language: translate, translations: translate});
-	}
-
+export default class HelloWorld extends Component.withWatchables("language") {
 	bdElements(){
+		let translations = this.kwargs.translations;
 		return e("div", {
-			className: "helloWorld",
-			bdReflect: "translation",
-			bdReflectClass: [
-				"language",
-				"translation", translation => translation ? "" : "empty",
-				"translations", translations => translations ? "" : "no-translations",
-			]
+			bdReflect: ["language", language => translations[language] || ""],
+			bdReflectClass: ["language", language => translations[language] ? language : "empty"]
 		});
 	}
 }

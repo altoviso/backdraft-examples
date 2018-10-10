@@ -20,3 +20,4 @@ setInterval(function(){
 }, 1000);
 
 window.helloWorld = render(HelloWorld, {translations}, document.getElementById("static"));
+

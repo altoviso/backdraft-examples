@@ -13,12 +13,29 @@
 </noscript>
 <div>
     <h2>Backdraft Dialog Example</h2>
-    <p>This application presents a table of file names, modified timestamps, and sizes, and a rename button that presents a dialog that allows the file name to be changed. If the dialog is OK'd with a non-empty name, then the name is updated. Another little component watches the data behind the file list and outputs changes to that list to demonstrate the underlying data is actually changed...not just what is on the screen.</p>
-    <p>The program demonstrates declarative composition...notice that, without any knowledge of Backdraft, it is obvious how the rename dialog works.</p>
+    <p>This application presents a table of filenames, modified timestamps, sizes, and a rename button. Pressing the
+        button causes a dialog box to display that allows the filename to be changed. If the dialog is OK'd with a
+        non-empty name, then the name is updated. Another little component watches the data underlying the table and
+        outputs a log of how the data was changed. This demonstrates the underlying data is actually changed, not just
+        what is on the screen.</p>
+    <p>The program demonstrates a several of Backdraft features. First, it demonstrates how declarative composition is
+        used to build complex components from simple components. In particular, when you <a href="">look at the code</a>
+        for the rename dialog box, it is obvious how the rename dialog works. Also notice how the FileList component is
+        composed of a data-dependent set of File components. Each component is trivial, yet the combined result is quite
+        powerful.</p>
+    <p>Second, the data displayed in the table is Backdraft <a href="">watchable data</a> . This means that any changes
+        to the data can be detected and side-effects applied as required. For example, the rename dialog box changes the
+        filename by changing the underlying data and both the File component and the Log component notice the change and
+        update their presentations accordingly.</p>
+    <p>Lastly, this application uses the Dialog, Labeled, and Input components from the <a href="">bd-widget project</a>. bd-widget is a set of standard widgets built with Backdraft.</p>
+    <p>This page loads the source version (not aggregated or minimized) of Backdraft and, as you can see, the page is
+        very minimal. Open the debugger and explore! The code for the program is in the github repo
+        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">altoviso/backdraft-tutorial</a>.
+    </p>
 </div>
 <div id="components">
-<div id="files"></div>
-<div id="log"></div>
+    <div id="files"></div>
+    <div id="log"></div>
 </div>
 <div>
     <h3>Further Information</h3>

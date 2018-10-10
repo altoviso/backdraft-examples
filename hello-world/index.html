@@ -13,26 +13,25 @@
 <div>
     <h2>Backdraft Hello World Example Application</h2>
     <p>This application defines a "HelloWorld" Backdraft Component. The component prints "Hello, World" in several
-        languages as given by the language property of the component. The main program creates and renders an instance
-        of HelloWorld in the black below, and then changes the language property every second, causing the component to
-        lookup and reflect the translation to the DOM.</p>
+        languages as given by the language property of the component and a set of translations. The main program creates
+        and renders an instance of HelloWorld in the black block below, and then changes the language property every
+        second, causing the component to lookup and reflect the translation to the DOM. The className property of the
+        DIV node is also changed to the language and the associated CSS colors the translation according to the
+        class.</p>
     <p>The main program creates second HelloWorld component in the red box. A reference to this second component is
         saved at window.helloWorld. You can open the debugger and set the language component explicitly (e.g.,
-        window.helloWorld.langauge = "French") and see the component update the display.</p>
+        window.helloWorld.langauge = "French") and see the component update the display. The possible language values
+        are Italian, French, Spanish, German, Swedish, Russian, and Japanese.</p>
+    <p>This page loads the source version (not aggregated or minimized) of Backdraft and, as you can see, the page is
+        very minimal. Open the debugger and explore!</p>
+    <p>This program is discussed in the tutorial section
+        <a href="http://localhost:8080/altoviso/backdraftjs.org/public/tutorial.html#bd-tutorial.helloWorld">Hello,
+            World</a>. The code for the program is in the github repo
+        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">altoviso/backdraft-tutorial</a>.
+    </p>
 </div>
 <div id="rotate"></div>
 <div id="static"></div>
-<div>
-    <h3>Further Information</h3>
-    <p>This program is discussed in the tutorial section
-        <a href="http://localhost:8080/altoviso/backdraftjs.org/public/tutorial.html#bd-tutorial.helloWorld">Hello,
-            World</a>.</p>
-    <p>The code for the program is in the github repo
-        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">altoviso/backdraft-tutorial</a>.
-    </p>
-    <p>There is a Pen of the code
-        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">here</a>.</p>
-</div>
 <script type="module" src="./src/main.js"></script>
 </body>
 </html>

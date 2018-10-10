@@ -1,7 +1,11 @@
-import {Component, Collection, render, svg, e, watch, toWatchable} from "./backdraft.js";
+import {Component, Collection, render, svg, e, toWatchable} from "./backdraft.js";
+
+// This is a port of the Vue example of the same name. Other than the mathematical calculation of a point (which is a property
+// of mathematics, not the example), it shares no common code.
 
 // The raw data to observe
-let stats = window.z = toWatchable([
+// window.polygraphData allows the data to be mutated in the debug console
+let stats = window.polygraphData = toWatchable([
 	{label: "A", value: 100},
 	{label: "B", value: 100},
 	{label: "C", value: 100},
@@ -20,10 +24,16 @@ function valueToPoint(value, index, total){
 }
 
 class AxisLabel extends Component.withWatchables("label") {
+	// this class is intended to be a child of the Backdraft Collection component, and, therefore, assumes
+	// this.kwargs.index and this.collection are defined during construction
+
 	constructor(kwargs){
 		super(kwargs);
-		this.calc(true);
-		this.own(watch(this.collection, ["length", this.kwargs.index], this.calc.bind(this)));
+		this.calc();
+
+		// if either the number of items in teh collection changes or the particular item associated with this instance
+		// changes, then recalc...
+		this.watch(this.collection, ["length", this.kwargs.index], this.calc.bind(this));
 	}
 
 	bdElements(){
@@ -38,15 +48,25 @@ class AxisLabel extends Component.withWatchables("label") {
 
 	calc(){
 		let stat = this.collection[this.kwargs.index];
+
+		// if stat mutated since the watcher was set up, destroy the old watcher
+		if(this.watchHandle && this.watchHandle.stat !== stat){
+			this.watchHandle.destroy();
+			this.watchHandle = null;
+		}
+
 		if(stat){
-			if(!this.watchHandle || this.watchHandle.stat !== stat){
-				this.watchHandle && this.watchHandle.destroy();
-				this.own(this.watchHandle = watch(stat, this.calc.bind(this)));
+			// update this.label
+			// note: AxisLabel is intended to be a child of Collection (see usage in Polygraph below)
+			// Collection automatically sets this.collection and this.kwargs.index
+			this.label = Object.assign({label:stat.label},
+				valueToPoint(stat.value + 10, this.kwargs.index, this.collection.length));
+
+			// make sure there is a watcher on stat
+			if(!this.watchHandle){
+				this.watchHandle = this.watch(stat, this.calc.bind(this));
 				this.watchHandle.stat = stat;
 			}
-			let label = valueToPoint(stat.value + 10, this.kwargs.index, this.collection.length);
-			label.label = stat.label;
-			this.bdMutate("label", "_label", label);
 		}
 	}
 }
@@ -58,7 +78,7 @@ class Polygraph extends Component {
 			return stats.map((s, i) => valueToPoint(s.value, i, length)).map(p => p.x + "," + p.y).join(" ");
 		};
 		return svg("svg", {width: 200, height: 200},
-			svg("g", {bdChildrenAttachPoint: true},
+			svg("g",
 				svg("polygon", {bdReflect_points: [this.kwargs.stats, pointsToPolyPoints]}),
 				svg("circle", {cx: 100, cy: 100, r: 80}),
 				e(Collection, {root: svg("g"), childType: AxisLabel, collection: this.kwargs.stats})
@@ -71,7 +91,7 @@ class StatController extends Component.withWatchables("stat") {
 	constructor(kwargs){
 		super(kwargs);
 		this.stat = this.collection[this.kwargs.index];
-		this.own(watch(this.collection, this.kwargs.index, stat => (this.stat = stat)));
+		this.watch(this.collection, this.kwargs.index, stat => (this.stat = stat));
 	}
 
 	bdElements(){
