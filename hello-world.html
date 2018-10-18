@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div id="root">
+</div>
+<script type="module">
+	import {Component, e, render} from "https://cdn.jsdelivr.net/gh/rcgill/stage-bd-core@2.3.0/lib.js";
+
+	class HelloWorld extends Component {
+		bdElements(){
+			return e("div", "hello, world");
+		}
+	}
+
+	render(HelloWorld, "root")
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/bd-load@2.0.2/load.js"></script>
+    <script>
+		require.config({
+			packages: [
+				{
+					name: 'backdraft',
+					location: "https://cdn.jsdelivr.net/gh/rcgill/stage-bd-core@2.3.0/dist",
+					main: "lib-umd"
+				},
+			]
+		});
+		window.onload = function(){
+			require(["backdraft"], function(bd){
+				class HelloWorld extends bd.Component {
+					bdElements(){
+						return bd.e("div", "hello, world");
+					}
+				}
+
+				bd.render(HelloWorld, "root");
+			})
+		}
+    </script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
+

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="../node_modules/bd-widgets/less/main.css">
-    <title>Backdraft Hello World Example Application</title>
+    <title>Backdraft Dialog Example Application</title>
 </head>
 <body>
 <noscript id="noScript">
@@ -23,30 +23,19 @@
         for the rename dialog box, it is obvious how the rename dialog works. Also notice how the FileList component is
         composed of a data-dependent set of File components. Each component is trivial, yet the combined result is quite
         powerful.</p>
-    <p>Second, the data displayed in the table is Backdraft <a href="">watchable data</a> . This means that any changes
+    <p>Second, the data displayed in the table is Backdraft <a href="http://backdraftjs.org/public/tutorial.html#bd-tutorial.watchableData">watchable data</a> . This means that any changes
         to the data can be detected and side-effects applied as required. For example, the rename dialog box changes the
         filename by changing the underlying data and both the File component and the Log component notice the change and
         update their presentations accordingly.</p>
     <p>Lastly, this application uses the Dialog, Labeled, and Input components from the <a href="">bd-widget project</a>. bd-widget is a set of standard widgets built with Backdraft.</p>
     <p>This page loads the source version (not aggregated or minimized) of Backdraft and, as you can see, the page is
         very minimal. Open the debugger and explore! The code for the program is in the github repo
-        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">altoviso/backdraft-tutorial</a>.
+        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/dialog">altoviso/backdraft-tutorial</a>.
     </p>
 </div>
 <div id="components">
     <div id="files"></div>
     <div id="log"></div>
-</div>
-<div>
-    <h3>Further Information</h3>
-    <p>This program is discussed in the tutorial section
-        <a href="http://localhost:8080/altoviso/backdraftjs.org/public/tutorial.html#bd-tutorial.helloWorld">Hello,
-            World</a>.</p>
-    <p>The code for the program is in the github repo
-        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">altoviso/backdraft-tutorial</a>.
-    </p>
-    <p>There is a Pen of the code
-        <a href="https://github.com/altoviso/backdraft-tutorial/tree/master/hello-world">here</a>.</p>
 </div>
 <script type="module" src="./src/main.js"></script>
 </body>

@@ -1,6 +1,5 @@
 import {Component, e} from "./backdraft.js";
 
-
 export default class HelloWorld extends Component.withWatchables("language") {
 	bdElements(){
 		let translations = this.kwargs.translations;

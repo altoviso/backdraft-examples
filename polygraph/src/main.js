@@ -71,17 +71,18 @@ class AxisLabel extends Component.withWatchables("label") {
 	}
 }
 
+let pointsToPolyPoints = (stats) => {
+	let length = stats.length;
+	return stats.map((s, i) => valueToPoint(s.value, i, length)).map(p => p.x + "," + p.y).join(" ");
+};
+
 class Polygraph extends Component {
 	bdElements(){
-		let pointsToPolyPoints = (stats) => {
-			let length = stats.length;
-			return stats.map((s, i) => valueToPoint(s.value, i, length)).map(p => p.x + "," + p.y).join(" ");
-		};
 		return svg("svg", {width: 200, height: 200},
 			svg("g",
 				svg("polygon", {bdReflect_points: [this.kwargs.stats, pointsToPolyPoints]}),
 				svg("circle", {cx: 100, cy: 100, r: 80}),
-				e(Collection, {root: svg("g"), childType: AxisLabel, collection: this.kwargs.stats})
+				e(Collection, {elements: svg("g"), childType: AxisLabel, collection: this.kwargs.stats})
 			)
 		);
 	}

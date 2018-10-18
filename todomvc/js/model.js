@@ -5,7 +5,7 @@ function getUid(){
 	return ++uidSeed;
 }
 
-class Item extends WatchHub() {
+class Item extends WatchHub {
 	constructor(id, completed, text){
 		super();
 
@@ -40,7 +40,7 @@ class Item extends WatchHub() {
 	}
 }
 
-class Model extends EventHub() {
+class Model extends EventHub {
 	constructor(storageId){
 		super();
 		this._storageId = storageId;
