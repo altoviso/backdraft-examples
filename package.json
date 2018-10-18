@@ -1,6 +1,6 @@
 {
   "name": "backdraft-tutorial",
-  "version": "1.0.0",
+  "version": "2.3.0",
   "description": "step-by-step guide to the backdraft library",
   "main": "index.html",
   "scripts": {
