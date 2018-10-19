@@ -3,7 +3,7 @@
 This repository contains all code used in various Backdraft tutorials and examples.
 
 
-Backdraft is extensively documented at [backdraftjs.org](http://backdraftjs.org). Please visit [Getting Started](http://backdraftjs.org/tutorial/1-getting-started.html) for an explanation of how to install and use this repository.
+Backdraft is extensively documented at [backdraftjs.org](http://backdraftjs.org).
 
 ## Install
 
@@ -22,20 +22,23 @@ $ npm run server
 
 ## What's Included
 
-### hello-world-dynamic
-Code used for Section [Components](http://backdraftjs.org/tutorial/3-components.html)  of the Tutorial.
+### hello-world.html
+Code used for the single file quick start demo shown in [Installation](http://backdraftjs.org/install.html).
 
-### hello-world-static
-Code used for Section [Elements](http://backdraftjs.org/tutorial/2-elements.html) of the Tutorial.
+### hello-world.amd.html
+Code used for the single file quick start AMD demo shown in [Installation](http://backdraftjs.org/install.html).
+
+### hello-world
+Code used for Section [Hello, World](http://backdraftjs.org/tutorial.html#bd-tutorial.helloWorld)  of the Tutorial.
 
 ### js-framework-benchmark
 A Backdraft implementation of the [js-framework-benchmark](https://github.com/krausest/js-framework-benchmark) exercise.
 
+### polygraph
+A Backdraft implementation of the Vue Polygraph demo. A good example of reflecting [watchable data](http://backdraftjs.org/tutorial.html#bd-tutorial.watchableData), [SVG elements](http://backdraftjs.org/docs.html#bd-core.functions.svg), and building components with variable, homogeneous [children components](http://backdraftjs.org/tutorial.html#bd-tutorial.children).
+
 ### schedule
 Demonstrates a sortable grid with sort-controlling widgets in the header. Both the grid and the widgets are built from scratch with Backdraft with no external dependencies. This is a really nice demo of how performant Backdraft code can be and how easy it is to build complex user interface widgets.
-
-### state-button
-Code used for Secttion [Events](http://backdraftjs.org/tutorial/4-events.html) of the Tutorial.
 
 ### Thinking in Backdraft.
 Demonstrates the [Thinking in React](https://reactjs.org/docs/thinking-in-react.html) example as expressed with Backdraft. It is interesting that most React's discussion applies equally to Backdraft yet the underlying design of React and Backdraft are quite different.
@@ -43,9 +46,6 @@ Demonstrates the [Thinking in React](https://reactjs.org/docs/thinking-in-react.
 ### todomvc
 A Backdraft implementation of the [todomvc](https://github.com/tastejs/todomvc) exercise.
 
-
-### grid
-Sketches a grid that can handle tens-of-thousands of rows. This demo is not complete...but is far enough along to see how easy it is construct grids that hold *thousands* of rows and yet has *instantaneous* performance.
 
 ## Support
 
