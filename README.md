@@ -8,12 +8,12 @@ Backdraft is extensively documented at [backdraftjs.org](http://backdraftjs.org)
 ## Install
 
 ```
-$ git clone https://github.com/altoviso/backdraft-tutorial.git
-$ cd backdraft-tutorial
+$ git clone https://github.com/altoviso/backdraft-examples.git
+$ cd backdraft-examples
 $ npm install
 ```
 
-A small [Express server](https://github.com/altoviso/backdraft-tutorial/blob/master/httpServer.js) is included to serve the project root so the examples can be run. To start this server:
+A small [Express server](https://github.com/altoviso/backdraft-examples/blob/master/httpServer.js) is included to serve the project root so the examples can be run. To start this server:
 
 ```
 $ npm run server

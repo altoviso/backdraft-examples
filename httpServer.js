@@ -35,7 +35,7 @@ let server = http.createServer(app);
 server.listen(port);
 server.on("error", (e)=>{throw e;});
 server.on("listening", ()=>{console.log("listening on port ", server.address().port);});
-require("opn")("http://localhost:" + server.address().port + "/Examples.html");
+require("opn")("http://localhost:" + server.address().port + "/catalog.html");
 //
 // console.log("page that contains links to all examples: http://localhost:" + server.address().port + "/Examples.html");
 // console.log("hello world static example: http://localhost:" + server.address().port + "/hello-world-static/index.html");

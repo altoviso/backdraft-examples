@@ -13,7 +13,7 @@
 	"homepage": "https://www.backdraftjs.org",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/altoviso/backdraft-tutorial.git/js-framework-benchmark"
+		"url": "https://github.com/altoviso/backdraft-examples.git/js-framework-benchmark"
 	},
 	"devDependencies": {
 	},
