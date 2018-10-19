@@ -19,5 +19,3 @@ setInterval(function(){
 	helloWorld.language = languageChoices[(counter = ++counter % languageChoices.length)];
 }, 1000);
 
-window.helloWorld = render(HelloWorld, {translations}, document.getElementById("static"));
-
