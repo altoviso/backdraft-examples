@@ -9,7 +9,7 @@ class ProductRow extends Component {
 		);
 	}
 
-	parentOnMutate(parent){
+	onMutateParent(parent){
 		parent.watch("filterText", filterText => {
 			if(filterText && this.kwargs.product.name.indexOf(filterText) === -1){
 				this.addClassName("hide");
