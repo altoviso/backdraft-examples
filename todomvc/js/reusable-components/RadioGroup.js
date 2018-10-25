@@ -7,7 +7,7 @@ export default class RadioGroup extends Component.withWatchables("value") {
 		this.kwargs.group.forEach(item => "value" in item || (item.value = item.label));
 	}
 
-	valueOnMutate(value){
+	onMutateValue(value){
 		this.children && this.children.forEach(child => {
 			value === child.kwargs.value ?
 				child.addClassName("checked") :
