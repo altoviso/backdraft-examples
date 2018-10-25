@@ -1,7 +1,7 @@
-import {Component, Collection, render, svg, e, toWatchable} from "./backdraft.js";
+import {Component, Collection, CollectionChild, render, svg, e, toWatchable} from "./backdraft.js";
 
-// This is a port of the Vue example of the same name. Other than the mathematical calculation of a point (which is a property
-// of mathematics, not the example), it shares no common code.
+// This is a port of the Vue example of the same name.
+// Other than the mathematical calculation of a point (which is a property of mathematics, not the example), it shares no common code.
 
 // The raw data to observe
 // window.polygraphData allows the data to be mutated in the debug console
@@ -20,64 +20,43 @@ function valueToPoint(value, index, total){
 	let angle = Math.PI * 2 / total * index;
 	let cos = Math.cos(angle);
 	let sin = Math.sin(angle);
-	return {x: x * cos - y * sin + 100, y: x * sin + y * cos + 100};
+	return {x: Math.round(x * cos - y * sin + 100), y: Math.round(x * sin + y * cos + 100)};
 }
 
-class AxisLabel extends Component.withWatchables("label") {
-	// this class is intended to be a child of the Backdraft Collection component, and, therefore, assumes
-	// this.kwargs.index and this.collection are defined during construction
-
-	constructor(kwargs){
-		super(kwargs);
-		this.calc();
-
-		// if either the number of items in teh collection changes or the particular item associated with this instance
-		// changes, then recalc...
-		this.watch(this.collection, ["length", this.kwargs.index], this.calc.bind(this));
-	}
-
+class AxisLabel extends CollectionChild.withWatchables("item:label", "item:value", "point") {
 	bdElements(){
+		// reflect the value of this.label into a svg text node
+		this.onMutateValue(this.value);
 		return svg("text", {
 			bdReflect: {
-				x: ["label", p => p.x],
-				y: ["label", p => p.y],
-				innerHTML: ["label", p => p.label]
+				x: ["point", p => p.x],
+				y: ["point", p => p.y],
+				innerHTML: "label"
 			}
 		});
 	}
 
-	calc(){
-		let stat = this.collection[this.kwargs.index];
+	onMutateValue(value){
+		// update this.point
+		this.point = valueToPoint((value || 0) + 10, this.collectionIndex, this.collectionLength);
+	}
 
-		// if stat mutated since the watcher was set up, destroy the old watcher
-		if(this.watchHandle && this.watchHandle.stat !== stat){
-			this.watchHandle.destroy();
-			this.watchHandle = null;
-		}
+	onMutateCollectionLength(){
+		this.onMutateValue(this.value);
+	}
 
-		if(stat){
-			// update this.label
-			// note: AxisLabel is intended to be a child of Collection (see usage in Polygraph below)
-			// Collection automatically sets this.collection and this.kwargs.index
-			this.label = Object.assign({label:stat.label},
-				valueToPoint(stat.value + 10, this.kwargs.index, this.collection.length));
-
-			// make sure there is a watcher on stat
-			if(!this.watchHandle){
-				this.watchHandle = this.watch(stat, this.calc.bind(this));
-				this.watchHandle.stat = stat;
-			}
-		}
+	onMutateCollectionIndex(){
+		this.onMutateValue(this.value);
 	}
 }
 
-let pointsToPolyPoints = (stats) => {
-	let length = stats.length;
-	return stats.map((s, i) => valueToPoint(s.value, i, length)).map(p => p.x + "," + p.y).join(" ");
-};
-
 class Polygraph extends Component {
 	bdElements(){
+		function pointsToPolyPoints(stats){
+			let length = stats.length;
+			return stats.map((s, i) => valueToPoint(s.value, i, length)).map(p => p.x + "," + p.y).join(" ");
+		}
+
 		return svg("svg", {width: 200, height: 200},
 			svg("g",
 				svg("polygon", {bdReflect_points: [this.kwargs.stats, pointsToPolyPoints]}),
@@ -88,28 +67,27 @@ class Polygraph extends Component {
 	}
 }
 
-class StatController extends Component.withWatchables("stat") {
-	constructor(kwargs){
-		super(kwargs);
-		this.stat = this.collection[this.kwargs.index];
-		this.watch(this.collection, this.kwargs.index, stat => (this.stat = stat));
-	}
-
+class StatController extends CollectionChild.withWatchables("item:label, value", "point") {
 	bdElements(){
 		return e("div",
-			e("label", {bdReflect: ["stat", stat => stat.label]}),
-			e("input", {
-				type: "range", min: 0, max: 100, value: this.stat.value,
-				bdOn_input: e => (this.stat.value = Number(e.target.value))
+			e("label", {
+				bdReflect: "label"
 			}),
-			e("div", {className: "value", bdReflect: ["stat", stat => stat.value]}),
+			e("input", {
+				type: "range", min: 0, max: 100, value: this.collectionItem.value,
+				bdOn_input: e => (this.collectionItem.value = Number(e.target.value)),
+				bdReflect_value: "value"
+			}),
+			e("div", {
+				className: "value", bdReflect: "value"
+			}),
 			e("button", {className: "remove", bdOn_click: this.remove.bind(this)}, "X")
 		);
 	}
 
 	remove(){
-		if(this.collection.length > 3){
-			this.collection.splice(this.kwargs.index, 1);
+		if(this.parent.collection.length > 3){
+			this.parent.collection.splice(this.collectionIndex, 1);
 		}else{
 			alert("Can't delete more!");
 		}
@@ -141,4 +119,13 @@ class Page extends Component {
 	}
 }
 
-render(Page, {stats: stats}, "root");
+let stack = [];
+
+window.kill = function(){
+	stack.pop().destroy();
+};
+
+window.add = function(){
+	stack.push(render(Page, {stats: stats}, "root"));
+}
+window.add();
